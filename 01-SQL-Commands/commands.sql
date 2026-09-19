@@ -310,3 +310,154 @@ SELECT * FROM EMPLOYEE1
 WHERE NOT (DEPARTMENT = 'IT');
 
 
+-- 19-09-2026 SET OPRETORS 
+
+
+
+CREATE TABLE Student_2023(
+Student_id INT PRIMARY KEY,
+Student_name VARCHAR(50),
+Course VARCHAR(50)
+);
+
+
+INSERT INTO
+	STUDENT_2023 (STUDENT_ID, STUDENT_NAME, COURSE)
+VALUES
+	(1, 'ARAV SHARMA', 'COMPUTER SCIENCE'),
+	(2, 'ISHITA VERMA', 'MECHNICAL ENGINEERING'),
+	(3, 'ANANYA DESAI', 'CIVIL ENGINEERING'),
+	(4, 'KABIR PATEL', 'ELECTRONICS'),
+	(5, 'RAHUL GUPTA', 'COMPUTER SCIENCE');
+
+SELECT * FROM STUDENT_2023;
+
+CREATE TABLE Student_2024(
+Student_id INT PRIMARY KEY,
+Student_name VARCHAR(50),
+Course VARCHAR(50)
+);
+
+
+INSERT INTO
+	STUDENT_2024 (STUDENT_ID, STUDENT_NAME, COURSE)
+VALUES
+	(3, 'ANANYA DESAI', 'CIVIL ENGINEERING'),
+	(4, 'KABIR PATEL', 'ELECTRONICS'),
+	(5, 'MEERA RAO', 'COMPUTER SCIENCE'),
+	(6, 'VIKRAM SINGH', 'MATHMATECIS'),
+	(7,'SANYA KAPOOR', 'PHYCIS');
+
+SELECT * FROM STUDENT_2024;
+
+--FUNCTIIONS
+
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price NUMERIC(10,2),
+    quantity INT,
+    added_date DATE,
+    discount_rate NUMERIC(5,2)
+);
+
+INSERT INTO products
+(product_name, category, price, quantity, added_date, discount_rate)
+VALUES
+('Laptop', 'Electronics', 75000.50, 10, '2024-01-15', 10.00),
+('Smartphone', 'Electronics', 45000.99, 25, '2024-02-20', 5.00),
+('Headphones', 'Accessories', 1500.75, 50, '2024-03-05', 15.00),
+('Office Chair', 'Furniture', 5500.00, 20, '2023-12-01', 20.00),
+('Desk', 'Furniture', 8000.00, 15, '2023-11-20', 12.00),
+('Monitor', 'Electronics', 12000.00, 8, '2024-01-10', 8.00),
+('Printer', 'Electronics', 9500.50, 5, '2024-02-01', 7.50),
+('Mouse', 'Accessories', 750.00, 40, '2024-03-18', 10.00),
+('Keyboard', 'Accessories', 1250.00, 35, '2024-03-18', 10.00),
+('Tablet', 'Electronics', 30000.00, 12, '2024-02-28', 5.00);
+
+
+
+
+-- TOTAL QUANTITY AVILABLE OF ALL PRODUCTS
+
+SELECT SUM(quantity) AS TOTAL_QUANTITY 
+FROM Products
+WHERE Category = 'electronics' AND price > 20000;
+
+-- TOTAL NUMBER OF PRODUCTS USING COUNT 
+
+SELECT COUNT(*) AS TOTAL_PRODUCTS
+FROM Products
+WHERE Product_name LIKE '%phone%';
+
+-- AVG PRICE OF THE PRODUCTS
+
+SELECT AVG(price )
+ AS Average_price 
+ from products;
+
+--- AVG PRICE IF THE PRODUCT 
+
+SELECT AVG(price) AS AVERAGE_price
+FROM products
+WHERE CATEGORY = 'Accessories';
+
+-- MAX AND MIN FUNCTION USE
+
+SELECT MAX(PRICE) AS MAXIMUM_PRICE
+FROM PRODUCTS;
+
+SELECT MIN(PRICE) AS MINIMUM_PRICE
+FROM PRODUCTS;
+
+
+-- STRIING FUNCTION 
+
+-- GET ALL THE CATEGORIES IN UPPER CASE 
+SELECT UPPER(CATEGORY) AS CAPITAL_CATEGAORY
+FROM PRODUCTS;
+
+ -- GET ALL THE CATEGORIES IN LOWER CASE 
+SELECT LOWER(CATEGORY) AS CAPITAL_CATEGAORY
+FROM PRODUCTS;
+
+-- JOIN THE PRODUCT NAME AND CATEGORY TEXT WITH HYPEN
+
+SELECT CONCAT (Product_name, '-', category)
+from products;
+
+-- EXTRACT THE FIRST FIVE CHARACHTER FROM PRODUCTS NAME
+
+SELECT SUBSTRING (Product_name, 1,5)  AS Short_name
+FROM PRODUCTS;
+
+-- COUNT LENGTH 
+SELECT Product_name, LENGTH(Product_name)
+AS COUNT_OF_CHAR
+FROM PRODUCTS;
+
+-- REMOVE LEADING AND TRAILING SPACES FROM STRING 
+
+SELECT TRIM('___ MONITAR')  AS TRIM_tEXT 
+FROM products;
+
+--REPLACE PHONE WITH DEVICE 
+
+SELECT REPLACE(product_name, 'phone', 'device') AS updated
+FROM products;
+
+-- LEFT OR RIGHT FUNCTION 
+
+SELECT LEFT(category, 3) AS category
+from products;
+
+-- LEFT OR RIGHT FUNCTION 
+
+SELECT RIGHT(category, 3) AS category
+from products;
+
+
+
